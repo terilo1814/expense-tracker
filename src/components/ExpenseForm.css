@@ -1,0 +1,54 @@
+*/ {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 3rem auto;
+    width: 95%;
+    max-width: 25rem;
+    border-radius: 6px;
+    background-color: #f9f8fa;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+
+}
+
+h2 {
+    color: rgb(235, 189, 91);
+}
+
+.mail-ui,
+.pswd-ui,
+.cnf-ui {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+label {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 13px;
+    border-radius: 7px;
+    border: 2px solid #ccc;
+}
+
+.signup-btn {
+    background: rgb(235, 189, 91);
+    width: 30%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+}
+
+.signup-btn:hover {
+    cursor: pointer;
+    color: white;
+}
