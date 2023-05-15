@@ -1,0 +1,61 @@
+*/ {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-bottom: 50px;
+    color: rgb(199, 130, 130);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.cnt {
+    margin: 3rem auto;
+    width: 95%;
+    max-width: 35rem;
+    border-radius: 6px;
+    background-color: #f9f8fa;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+}
+
+.name-icon,.url-icon {
+    width: 40px;
+    height: 20px
+}
+
+.name,
+.photo {
+    display: flex;
+    flex-direction: row;
+
+}
+.photo label{
+    width: 40%;
+    margin-left: 10px;
+}
+.name label{
+    width: 40%;
+    margin-left: 10px;
+}
+input{
+
+    margin-bottom: 30px;
+}
+.update-btn,.cancel-btn{
+    padding: 10px;
+    border-radius: 20px;
+    width: 20%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background: rgb(199, 130, 130);
+    border:none;
+}
+.update-btn:hover,
+.cancel-btn:hover{
+    color:white;
+    cursor: pointer;
+}

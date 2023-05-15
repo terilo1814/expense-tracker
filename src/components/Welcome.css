@@ -1,0 +1,29 @@
+*/ {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ctn-group {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid grey;
+    background: rgb(150, 140, 140);
+   
+}
+ h3{
+    font-family: 'Times New Roman', Times, serif;
+    color: blanchedalmond
+    
+}
+
+.profile-btn {
+    background: #bbd493;
+    border-radius: 30px;
+    padding: 4px;
+    border: 1px solid #ccc;
+    margin-left:850px;
+    margin-bottom: 17px;
+    margin-top: 15px; 
+    
+}

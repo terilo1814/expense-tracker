@@ -3,6 +3,7 @@ import { SignupAndLogin } from "./components/SignupAndLogin";
 import { AppContext } from "./context/AppContext";
 import { Route, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { Welcome } from "./components/Welcome";
+import { Profile } from "./components/Profile";
 
 
 
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route exact path='/welcome'>
           <Welcome />
+        </Route>
+        <Route exact path='/profile'>
+          <Profile />
         </Route>
       </AppContext.Provider>
     </>
