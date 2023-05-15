@@ -17,7 +17,7 @@
 }
 
 h2 {
-    color: rgb(235, 189, 91);
+    color: #bbe780;
 }
 
 .mail-ui,
@@ -39,16 +39,31 @@ input {
     border: 2px solid #ccc;
 }
 
-.signup-btn {
-    background: rgb(235, 189, 91);
+.auth-btn {
+    background:  #bbe780;
     width: 30%;
     padding: 10px;
     border-radius: 10px;
     border: none;
-    margin-top: 15px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    font-size: medium;
 }
 
-.signup-btn:hover {
+.auth-btn:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.toggle-btn {
+    margin: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    background: #c9cdce;
+    border: 1px solid #ccc;
+    font-size: medium;
+}
+.toggle-btn:hover{
     cursor: pointer;
     color: white;
 }
