@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import './Profile.css'
+import React, { useContext, useEffect } from 'react';
+import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { BsGlobe } from 'react-icons/bs';
@@ -12,8 +12,8 @@ export const Profile = () => {
 
     const { contextValue } = useContext(AppContext)
 
-    const [fullName, setFullName] = useState('');
-    const [photoURL, setPhotoURL] = useState('');
+    const [fullName, setFullName] = useState(contextValue.fullName);
+    const [photoURL, setPhotoURL] = useState(contextValue.photoURL);
 
     const updateHandler = () => {
         const url = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
@@ -33,10 +33,7 @@ export const Profile = () => {
                     'Content-Type': 'application/json'
                 }
             }).then(res => {
-                setFullName('')
-                setPhotoURL('')
                 if (res.ok) {
-
                     return res.json()
                 } else {
                     return res.json().then(data => {
@@ -50,6 +47,40 @@ export const Profile = () => {
             })
 
     }
+
+    const getProfileData = async () => {
+        try {
+            const url = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    idToken: contextValue.token,
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (response.ok) {
+                const data = await response.json()
+                const user = data.users.find((user) => user.email === contextValue.userEmail);
+                setFullName(user?.displayName)
+                setPhotoURL(user?.photoUrl)
+            }
+            else {
+                throw new Error('Failed to retrieve profile data')
+            }
+
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    useEffect(() => {
+        if (contextValue.token)
+            getProfileData()
+    }, [contextValue.token])
+
+
 
 
     return (
