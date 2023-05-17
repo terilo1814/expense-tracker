@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { BsGlobe } from 'react-icons/bs';
 import { useState } from 'react';
 import { AppContext } from '../context/AppContext';
@@ -15,39 +15,36 @@ export const Profile = () => {
     const [fullName, setFullName] = useState(contextValue.fullName);
     const [photoURL, setPhotoURL] = useState(contextValue.photoURL);
 
-    const updateHandler = () => {
-        const url = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
+    const updateHandler = async () => {
+        try {
+            const url = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
+            const response = await fetch(url,
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        idToken: contextValue.token,
+                        displayName: fullName,
+                        photoUrl: photoURL,
+                        returnSecureToken: true
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            if (response.ok) {
+                return response.json()
+            }
+            else {
+                const data = await response.json()
+                let errorMessage = 'Authentication failed'
+                throw new Error(errorMessage)
+            }
 
-
-        fetch(
-            url,
-            {
-                method: 'POST',
-                body: JSON.stringify({
-                    idToken: contextValue.token,
-                    displayName: fullName,
-                    photoUrl: photoURL,
-                    returnSecureToken: true
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => {
-                if (res.ok) {
-                    return res.json()
-                } else {
-                    return res.json().then(data => {
-                        let errorMessage = 'Authentication failed'
-                        throw new Error(errorMessage)
-                    })
-                }
-
-            }).catch(err => {
-                alert(err.message)
-            })
-
+        } catch (error) {
+            alert(error)
+        }
     }
-
+    
     const getProfileData = async () => {
         try {
             const url = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
@@ -81,11 +78,41 @@ export const Profile = () => {
     }, [contextValue.token])
 
 
+    const emailHandler = async () => {
+        try {
+            const url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
+            const response = await fetch(url,
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        requestType: "VERIFY_EMAIL",
+                        idToken: contextValue.token
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            if (response.ok) {
+                alert('Email verification link sent. Please check your email.');
+            }
+            else {
+                throw new Error('Failed to verify email')
+            }
+
+        } catch (error) {
+            alert(error)
+        }
+
+    }
 
 
     return (
         <>
             <div className='cnt'>
+                <p>{contextValue.userEmail}</p>
+                <button className='email-btn' onClick={emailHandler}>Verify email
+                    <FontAwesomeIcon icon={faEnvelope} className='email-icon' />
+                </button>
                 <h1>Contact Details</h1>
 
                 <div className='name'>

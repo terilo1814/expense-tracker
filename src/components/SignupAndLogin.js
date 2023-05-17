@@ -59,7 +59,6 @@ export const SignupAndLogin = () => {
                     }
                 }).then(res => {
                     if (res.ok) {
-                        console.log(res.ok)
                         if (!isLogin) {
                             confirmPassword.current.value = '';
                         }

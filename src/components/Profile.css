@@ -4,6 +4,23 @@
     box-sizing: border-box;
 }
 
+.email-btn {
+    padding: 15px;
+    border-radius: 6px;
+    border: none;
+    background: #bbe780;
+    margin-bottom: 10px;
+}
+.email-icon{
+    margin-left: 5px;
+    height: 16px;
+}
+.email-btn:hover,
+.email-icon:hover {
+    color: white;
+    cursor: pointer;
+}
+
 h1 {
     margin-bottom: 50px;
     color: rgb(199, 130, 130);
@@ -21,7 +38,8 @@ h1 {
     text-align: center;
 }
 
-.name-icon,.url-icon {
+.name-icon,
+.url-icon {
     width: 40px;
     height: 20px
 }
@@ -32,19 +50,24 @@ h1 {
     flex-direction: row;
 
 }
-.photo label{
+
+.photo label {
     width: 40%;
     margin-left: 10px;
 }
-.name label{
+
+.name label {
     width: 40%;
     margin-left: 10px;
 }
-input{
+
+input {
 
     margin-bottom: 30px;
 }
-.update-btn,.cancel-btn{
+
+.update-btn,
+.cancel-btn {
     padding: 10px;
     border-radius: 20px;
     width: 20%;
@@ -52,10 +75,11 @@ input{
     margin-bottom: 20px;
     margin-right: 20px;
     background: rgb(199, 130, 130);
-    border:none;
+    border: none;
 }
+
 .update-btn:hover,
-.cancel-btn:hover{
-    color:white;
+.cancel-btn:hover {
+    color: white;
     cursor: pointer;
 }
