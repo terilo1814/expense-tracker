@@ -108,6 +108,7 @@ export const Profile = () => {
 
     return (
         <>
+         
         <button className="logout-btn" onClick={contextValue.logout}>
             Logout
             <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />

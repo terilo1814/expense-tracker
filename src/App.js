@@ -4,6 +4,7 @@ import { AppContext } from "./context/AppContext";
 import { Route, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { Welcome } from "./components/Welcome";
 import { Profile } from "./components/Profile";
+import { ForgotPassword } from "./components/ForgotPassword";
 
 
 
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route exact path='/profile'>
           <Profile />
+        </Route>
+        <Route excat path='/forgotPassword'>
+          <ForgotPassword />
         </Route>
       </AppContext.Provider>
     </>
