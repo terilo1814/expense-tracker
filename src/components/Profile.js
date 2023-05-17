@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { BsGlobe } from 'react-icons/bs';
 import { useState } from 'react';
 import { AppContext } from '../context/AppContext';
@@ -44,7 +44,7 @@ export const Profile = () => {
             alert(error)
         }
     }
-    
+
     const getProfileData = async () => {
         try {
             const url = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCE9Ri0f_1n-d_Z-CFFDTIrtb1pk1NRfJQ'
@@ -108,11 +108,13 @@ export const Profile = () => {
 
     return (
         <>
+        <button className="logout-btn" onClick={contextValue.logout}>
+            Logout
+            <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
+          </button>
+        
             <div className='cnt'>
-                <p>{contextValue.userEmail}</p>
-                <button className='email-btn' onClick={emailHandler}>Verify email
-                    <FontAwesomeIcon icon={faEnvelope} className='email-icon' />
-                </button>
+              
                 <h1>Contact Details</h1>
 
                 <div className='name'>
@@ -128,6 +130,10 @@ export const Profile = () => {
                 </div>
                 <button className='update-btn' onClick={updateHandler}>Update</button>
                 <button className='cancel-btn'>Cancel</button>
+                <br></br>
+                <button className='email-btn' onClick={emailHandler}>Verify email
+                    <FontAwesomeIcon icon={faEnvelope} className='email-icon' />
+                </button>
             </div>
 
         </>

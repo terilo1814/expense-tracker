@@ -4,6 +4,26 @@
     box-sizing: border-box;
 }
 
+.logout-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 13px;
+    background: rgb(199, 130, 130);
+    position: absolute;
+    right:10px;
+    top: 8px;
+}
+
+.logout-icon {
+    margin-left: 5px
+}
+
+.logout-btn:hover,
+.logout-icon:hover {
+    color: white;
+    cursor: pointer
+}
+
 .email-btn {
     padding: 15px;
     border-radius: 6px;
@@ -11,10 +31,12 @@
     background: #bbe780;
     margin-bottom: 10px;
 }
-.email-icon{
+
+.email-icon {
     margin-left: 5px;
     height: 16px;
 }
+
 .email-btn:hover,
 .email-icon:hover {
     color: white;

@@ -9,6 +9,7 @@ import { Profile } from "./components/Profile";
 
 function App() {
 
+  const history = useHistory()
   const initialToken = localStorage.getItem('token')
   const initialEmail = localStorage.getItem('email')
 
@@ -28,6 +29,7 @@ function App() {
   const logoutHandler = () => {
     setToken(null)
     localStorage.clear()
+    history.push('/')
   }
 
   const contextValue = {
