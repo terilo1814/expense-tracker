@@ -8,10 +8,18 @@
     padding: 10px;
     border: none;
     border-radius: 13px;
-    background: rgb(199, 130, 130);
+    background: #bbd493;
     position: absolute;
     right:10px;
     top: 8px;
+}
+.dis-photo{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 30px;
+    
 }
 
 .logout-icon {

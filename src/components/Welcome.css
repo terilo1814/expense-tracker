@@ -9,21 +9,86 @@
     flex-direction: row;
     border-bottom: 1px solid grey;
     background: rgb(150, 140, 140);
-   
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
- h3{
+
+h3 {
     font-family: 'Times New Roman', Times, serif;
-    color: blanchedalmond
-    
+    color: blanchedalmond;
+    width: 100%;
+    text-align: center;
+
 }
 
 .profile-btn {
+
+    padding: 10px;
+    border: none;
+    border-radius: 13px;
     background: #bbd493;
-    border-radius: 30px;
-    padding: 4px;
-    border: 1px solid #ccc;
-    margin-left:850px;
-    margin-bottom: 17px;
-    margin-top: 15px; 
-    
+    position: absolute;
+    right: 110px;
+    top: 8px;
+}
+
+.upd-profile {
+    text-decoration: none;
+    color: black;
+}
+
+.upd-profile:hover {
+    color: white;
+}
+.container-ui{
+    margin: 3rem auto;
+    margin-top: 7rem;
+    width: 95%;
+    max-width: 25rem;
+    border-radius: 6px;
+    background-color: #f9f8fa;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+}
+
+.price-ui,
+.category-ui,
+.desc-ui,
+.date-ui {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.ctg-label {
+    padding: 13px;
+    border-radius: 7px;
+    border: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.expense-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgb(187, 150, 150);
+}
+
+.expense-btn:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.expense-def {
+    margin: 1rem auto;
+    width: 95%;
+    max-width: 35rem;
+    border-radius: 6px;
+    background-color: #f9f8fa;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
 }

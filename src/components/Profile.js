@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faSignOutAlt,faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import { BsGlobe } from 'react-icons/bs';
 import { useState } from 'react';
 import { AppContext } from '../context/AppContext';
@@ -108,16 +108,16 @@ export const Profile = () => {
 
     return (
         <>
-         
-        <button className="logout-btn" onClick={contextValue.logout}>
-            Logout
-            <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
-          </button>
-        
-            <div className='cnt'>
-              
-                <h1>Contact Details</h1>
 
+            <button className="logout-btn" onClick={contextValue.logout}>
+                Logout
+                <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
+            </button>
+
+            <div className='cnt'>
+
+                <h1>Contact Details</h1>
+                {photoURL ? <img className='dis-photo' src={photoURL}></img> : <FontAwesomeIcon  className='dis-photo' icon={faUserCircle} />}
                 <div className='name'>
                     <FontAwesomeIcon icon={faUser} className='name-icon' />
                     <label>Full name</label>
