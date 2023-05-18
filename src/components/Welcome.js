@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './Welcome.css'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom'
 import { AppContext } from '../context/AppContext'
@@ -16,24 +16,77 @@ export const Welcome = () => {
     const dateRef = useRef('')
 
 
-    const addHandler = (e) => {
+    const addHandler = async (e) => {
         e.preventDefault()
-
-
-        const newData = {
-            enteredPrice: priceRef.current.value,
-            enteredDesc: descRef.current.value,
-            enteredCategory: categoryRef.current.value,
-            enteredDate: dateRef.current.value
+        if (!priceRef.current.value || !descRef.current.value || !categoryRef.current.value || !dateRef.current.value) {
+            alert('Please fill out all the details')
+            return
         }
-        setDataList((prevData) => [...prevData, newData])
 
-        priceRef.current.value = '';
-        descRef.current.value = '';
-        categoryRef.current.value = '';
-        dateRef.current.value = '';
+        try {
+            const url = 'https://expense-tracker-37a8e-default-rtdb.firebaseio.com/expenses.json'
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    enteredPrice: priceRef.current.value,
+                    enteredDesc: descRef.current.value,
+                    enteredCategory: categoryRef.current.value,
+                    enteredDate: dateRef.current.value
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (response.ok) {
+                const newData = {
+                    enteredPrice: priceRef.current.value,
+                    enteredDesc: descRef.current.value,
+                    enteredCategory: categoryRef.current.value,
+                    enteredDate: dateRef.current.value
+                }
+                setDataList((prevData) => [...prevData, newData])
 
+                priceRef.current.value = '';
+                descRef.current.value = '';
+                categoryRef.current.value = '';
+                dateRef.current.value = '';
+            }
+            else {
+                const data = await response.json()
+                let errorMessage = 'Something went wrong'
+                throw new Error(errorMessage)
+            }
+        }
+        catch (error) {
+            alert(error)
+        }
     }
+
+    const fetchData = async () => {
+        try {
+            const url = 'https://expense-tracker-37a8e-default-rtdb.firebaseio.com/expenses.json'
+            const response = await fetch(url)
+            if (response.ok) {
+                const data = await response.json()
+                if (data) {
+                    const expensesData = Object.values(data)
+                    setDataList(expensesData)
+                }
+            }
+            else {
+                const errorMessage = 'Failed to fetch expenses';
+                throw new Error(errorMessage);
+            }
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    useEffect(() => {
+        if (fetchData)
+            fetchData()
+    }, [])
+
     return (
         <>
             <div className='ctn-group'>
@@ -61,7 +114,7 @@ export const Welcome = () => {
                 </div>
                 <div className='category-ui'>
                     <label>Category</label>
-                    <select className='ctg-label' ref={categoryRef}>
+                    <select className='ctg-label' ref={categoryRef} >
                         <option value="Petrol">Petrol</option>
                         <option value="Food">Food</option>
                         <option value="Salary">Salary</option>
