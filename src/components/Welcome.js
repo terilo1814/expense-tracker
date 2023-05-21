@@ -1,12 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Welcome.css';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom';
-import { AppContext } from '../context/AppContext';
+import { NavLink, useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { authActions } from '../store/AuthRedux';
+import { useDispatch } from 'react-redux';
 
 export const Welcome = () => {
-    const { contextValue } = useContext(AppContext);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(authActions.logout());
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        history.push('/');
+    };
+
     const [data, setDataList] = useState([]);
     const [editExpense, setEditExpense] = useState(null);
 
@@ -68,7 +78,6 @@ export const Welcome = () => {
                 categoryRef.current.value = '';
                 dateRef.current.value = '';
             } else {
-                const data = await response.json();
                 let errorMessage = 'Something went wrong';
                 throw new Error(errorMessage);
             }
@@ -103,8 +112,6 @@ export const Welcome = () => {
         fetchData();
     }, []);
 
-
-    
     const deleteHandler = async (id) => {
         try {
             const expenseId = data[id].name;
@@ -115,7 +122,6 @@ export const Welcome = () => {
             if (response.ok) {
                 setDataList((prevData) => prevData.filter((item) => item.name !== expenseId));
             } else {
-                const data = await response.json();
                 let errorMessage = 'Failed to delete expense';
                 throw new Error(errorMessage);
             }
@@ -123,8 +129,6 @@ export const Welcome = () => {
             alert(error);
         }
     };
-
-
 
     const editHandler = (id) => {
         setEditExpense(data[id].name);
@@ -160,7 +164,7 @@ export const Welcome = () => {
                 };
                 setDataList((prevData) =>
                     prevData.map((item) => (item.name === editExpense ? newData : item))
-                )
+                );
 
                 setEditExpense(null);
 
@@ -169,7 +173,6 @@ export const Welcome = () => {
                 categoryRef.current.value = '';
                 dateRef.current.value = '';
             } else {
-                const data = await response.json();
                 let errorMessage = 'Failed to update expense';
                 throw new Error(errorMessage);
             }
@@ -177,6 +180,8 @@ export const Welcome = () => {
             alert(error);
         }
     };
+
+    const totalExpenses = data.reduce((total, item) => total + Number(item.enteredPrice), 0);
 
     return (
         <>
@@ -187,7 +192,7 @@ export const Welcome = () => {
                         Update Profile
                     </NavLink>
                 </button>
-                <button className="logout-btn" onClick={contextValue.logout}>
+                <button className="logout-btn" onClick={logoutHandler}>
                     Logout
                     <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
                 </button>
@@ -218,6 +223,10 @@ export const Welcome = () => {
                     Add Expense
                 </button>
             </form>
+
+            {totalExpenses > 10000 && (
+                <button className="premium-btn">Activate Premium</button>
+            )}
 
             {data.map((item, index) => (
                 <div key={index} className="expense-def">

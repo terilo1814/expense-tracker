@@ -96,9 +96,10 @@ h3 {
     flex-direction: row;
 }
 
-.price-w{
+.price-w {
     width: 14%;
 }
+
 .ctg-w,
 .desc-w,
 .date-w {
@@ -111,7 +112,7 @@ h3 {
     border-radius: 40px;
     background: rgb(241, 123, 123);
     width: 14%;
-   
+
 
 }
 
@@ -119,6 +120,7 @@ h3 {
     cursor: pointer;
     color: white;
 }
+
 .edit-btn {
     padding: 7px;
     border: none;
@@ -132,4 +134,14 @@ h3 {
 .edit-btn:hover {
     cursor: pointer;
     color: white;
+}
+
+.premium-btn {
+    padding: 8px;
+    border: none;
+    border-radius: 40px;
+    background: rgb(123, 241, 123);
+    width: 16%;
+    margin: 0 auto;
+    display: block;
 }

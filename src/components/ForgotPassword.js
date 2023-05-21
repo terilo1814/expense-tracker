@@ -1,10 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './ForgotPassword.css'
-import { AppContext } from '../context/AppContext'
-
+import { useSelector} from 'react-redux'
 
 export const ForgotPassword = () => {
-    const { contextValue } = useContext(AppContext)
+
+    const userEmail = useSelector(state => state.auth.emailId)
+   
+
+
 
     const linkHandler = async () => {
         try {
@@ -13,13 +16,12 @@ export const ForgotPassword = () => {
                 method: 'POST',
                 body: JSON.stringify({
                     requestType: "PASSWORD_RESET",
-                    email:contextValue.userEmail
-    })
+                    email: userEmail
+                })
             })
-            if(response.ok)
-            {
+            if (response.ok) {
                 alert('Email verification link sent. Please check your email.');
-            }else{
+            } else {
                 throw new Error('Failed to verify email')
             }
         } catch (error) {
