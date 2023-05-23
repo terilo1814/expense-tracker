@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+   
 }
 
 .ctn-group {
@@ -13,6 +14,7 @@
     top: 0;
     left: 0;
     right: 0;
+
 }
 
 h3 {
@@ -24,7 +26,6 @@ h3 {
 }
 
 .profile-btn {
-
     padding: 10px;
     border: none;
     border-radius: 13px;
@@ -45,7 +46,6 @@ h3 {
 
 .container-ui {
     margin: 3rem auto;
-    margin-top: 7rem;
     width: 95%;
     max-width: 25rem;
     border-radius: 6px;
@@ -54,6 +54,7 @@ h3 {
     padding: 1rem;
     text-align: center;
 }
+
 
 .price-ui,
 .category-ui,
@@ -79,6 +80,20 @@ h3 {
 }
 
 .expense-btn:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.download-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgb(187, 150, 150);
+    margin-left: 19px;
+
+}
+
+.download-btn:hover {
     cursor: pointer;
     color: white;
 }
@@ -140,8 +155,36 @@ h3 {
     padding: 8px;
     border: none;
     border-radius: 40px;
-    background: rgb(123, 241, 123);
+    background: rgb(123, 204, 241);
     width: 16%;
     margin: 0 auto;
     display: block;
+}
+
+.premium-btn:hover {
+    cursor: pointer;
+    color: white;
+}
+
+
+.dark {
+    background-color: #333;
+    color: white;
+  
+}
+
+.dark .container-ui {
+    color: white;
+    border: 2px solid white; 
+}
+
+.dark .expense-def {
+    border: 2px solid white;
+}
+
+.dark .ctn-group {
+    background-color: #333;
+}
+.root {
+    padding: 4rem 0 ;
 }

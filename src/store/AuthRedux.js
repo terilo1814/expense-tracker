@@ -4,7 +4,6 @@ const initialState = {
     token: "",
     isLoggedIn: false,
     emailId: "",
-
 };
 
 const authSlice = createSlice({
@@ -20,18 +19,31 @@ const authSlice = createSlice({
             state.token = "";
             state.isLoggedIn = false;
             state.emailId = "";
-        }
-    }
+        },
+    },
 });
 
+const themeState = { toggle: false };
+const themeSlice = createSlice({
+    name: "theme",
+    initialState: themeState,
+    reducers: {
+        toggleTheme(state) {
+            state.toggle = !state.toggle
+            
+        }
+    },
+});
 
-
+const rootReducer = {
+    auth: authSlice.reducer,
+    theme: themeSlice.reducer,
+};
 
 const store = configureStore({
-    reducer: {
-        auth: authSlice.reducer
-    }
+    reducer: rootReducer,
 });
 
 export const authActions = authSlice.actions;
+export const themeActions = themeSlice.actions;
 export default store;
