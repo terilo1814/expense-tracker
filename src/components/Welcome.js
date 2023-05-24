@@ -6,7 +6,6 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { authActions } from '../store/AuthRedux';
 import { useDispatch, useSelector } from 'react-redux';
 import { themeActions } from '../store/AuthRedux';
-import { saveAs } from 'file-saver';
 
 export const Welcome = () => {
   const history = useHistory();
@@ -22,6 +21,7 @@ export const Welcome = () => {
 
   const [data, setDataList] = useState([]);
   const [editExpense, setEditExpense] = useState(null);
+
 
   const priceRef = useRef('');
   const descRef = useRef('');
@@ -74,12 +74,14 @@ export const Welcome = () => {
           enteredCategory: categoryRef.current.value,
           enteredDate: dateRef.current.value,
         };
+
         setDataList((prevData) => [...prevData, newData]);
 
         priceRef.current.value = '';
         descRef.current.value = '';
         categoryRef.current.value = '';
         dateRef.current.value = '';
+
       } else {
         let errorMessage = 'Something went wrong';
         throw new Error(errorMessage);
@@ -115,6 +117,7 @@ export const Welcome = () => {
     fetchData();
   }, []);
 
+
   const deleteHandler = async (id) => {
     try {
       const expenseId = data[id].name;
@@ -139,6 +142,7 @@ export const Welcome = () => {
     descRef.current.value = data[id].enteredDesc;
     categoryRef.current.value = data[id].enteredCategory;
     dateRef.current.value = data[id].enteredDate;
+
   };
 
   const updateData = async () => {
@@ -186,6 +190,14 @@ export const Welcome = () => {
 
   const totalExpenses = data.reduce((total, item) => total + Number(item.enteredPrice), 0);
 
+  if (totalExpenses >= 10000) {
+    dispatch(themeActions.toggleByValue(true))
+  }
+  else {
+    dispatch(themeActions.toggleByValue(false))
+  }
+
+
   const themeHandler = () => {
     dispatch(themeActions.toggleTheme());
   };
@@ -214,6 +226,12 @@ export const Welcome = () => {
 
     link.click();
   };
+
+  // useEffect(() => {
+  //   if (totalExpenses < 10000) {
+  //     dispatch(themeActions.toggleByValue(false))
+  //   }
+  // }, [totalExpenses])
 
   return (
     <>
@@ -260,6 +278,8 @@ export const Welcome = () => {
           </button>
         </form>
 
+
+
         {totalExpenses >= 10000 && (
           <button className="premium-btn" onClick={themeHandler}>
             Activate Premium
@@ -284,3 +304,5 @@ export const Welcome = () => {
     </>
   );
 };
+
+export default Welcome;
