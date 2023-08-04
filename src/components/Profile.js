@@ -43,6 +43,7 @@ export const Profile = () => {
             });
 
             if (response.ok) {
+                alert('Updated successfully')
                 return response.json();
             } else {
                 let errorMessage = 'Authentication failed';

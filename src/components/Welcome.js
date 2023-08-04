@@ -21,6 +21,7 @@ export const Welcome = () => {
 
   const [data, setDataList] = useState([]);
   const [editExpense, setEditExpense] = useState(null);
+  const [premium,setPremium]=useState(false)
 
 
   const priceRef = useRef('');
@@ -199,6 +200,7 @@ export const Welcome = () => {
 
 
   const themeHandler = () => {
+    setPremium(!premium)
     dispatch(themeActions.toggleTheme());
   };
 
@@ -235,8 +237,8 @@ export const Welcome = () => {
 
   return (
     <>
-      <div className={`root ${theme ? 'dark' : ''}`}>
-        <div className={`ctn-group ${theme ? 'dark' : ''}`}>
+      <div className={`root ${theme && premium? 'dark' : ''}`}>
+        <div className={`ctn-group ${theme && premium? 'dark' : ''}`}>
           <h3>Welcome to Expense Tracker</h3>
           <button className="profile-btn">
             <NavLink to="/profile" className="upd-profile">
@@ -248,7 +250,7 @@ export const Welcome = () => {
             <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
           </button>
         </div>
-        <form className={`container-ui ${theme ? 'dark' : ''}`}>
+        <form className={`container-ui ${theme && premium? 'dark' : ''}`}>
           <div className="price-ui">
             <label>Price</label>
             <input type="number" ref={priceRef} />
@@ -287,7 +289,7 @@ export const Welcome = () => {
         )}
 
         {data.map((item, index) => (
-          <div key={index} className={`expense-def ${theme ? 'dark' : ''}`}>
+          <div key={index} className={`expense-def ${theme && premium ? 'dark' : ''}`}>
             <span className="price-w">Price: {item.enteredPrice}&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span className="desc-w">Description: {item.enteredDesc}&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span className="ctg-w">Category: {item.enteredCategory}&nbsp;&nbsp;&nbsp;&nbsp;</span>

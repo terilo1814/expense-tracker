@@ -1,4 +1,4 @@
-*/ {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,6 +10,8 @@
     flex-direction: row;
     border-bottom: 1px solid grey;
     background: rgb(150, 140, 140);
+    height:47px;
+    
     position: fixed;
     top: 0;
     left: 0;
@@ -22,6 +24,7 @@ h3 {
     color: blanchedalmond;
     width: 100%;
     text-align: center;
+    margin-top: 10px;
 
 }
 
